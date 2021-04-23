@@ -1,12 +1,15 @@
 ﻿using AccessData.Queries;
 using Domain.Commands;
+using Domain.Models;
+using System;
 
 namespace Application.Services
 {
     public interface IComandaService
     {
-        void RegistrarComanda();
-        void ListarComandas();
+        void CreateComanda();
+        Comanda GetAll(DateTime? Fecha);
+        Comanda GetComandaById(Guid Id);
     }
 
     public class ComandaService : IComandaService
@@ -23,14 +26,11 @@ namespace Application.Services
         }
 
 
-        public void RegistrarComanda()
+        public void CreateComanda()
         {
 
         }
 
-        public void ListarComandas()
-        {
-
-        }
+      
     }
 }

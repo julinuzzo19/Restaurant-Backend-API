@@ -1,11 +1,16 @@
 ﻿using AccessData.Queries;
 using Domain.Commands;
+using Domain.Models;
+using System.Collections.Generic;
 
 namespace Application.Services
 {
     public interface IMercaderiaService
     {
         void CreateMercaderia();
+        List<Mercaderia> GetAll(int? TipoMercaderiaId);
+        void UpdateMercaderia(int Id);
+        Mercaderia GetMercaderiaById(int Id);
     }
 
     public class MercaderiaService : IMercaderiaService
@@ -23,6 +28,21 @@ namespace Application.Services
         public void CreateMercaderia()
         {
 
+        }
+
+        public List<Mercaderia> GetAll(int? TipoMercaderiaId)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Mercaderia GetMercaderiaById(int Id)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void UpdateMercaderia(int Id)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
