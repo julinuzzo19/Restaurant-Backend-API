@@ -1,5 +1,4 @@
-﻿using AccessData.Queries;
-using Domain.Commands;
+﻿using Domain.Commands;
 using Domain.Models;
 using System;
 
@@ -15,13 +14,13 @@ namespace Application.Services
     public class ComandaService : IComandaService
     {
         private readonly IGenericRepository _repository;
-        private readonly ComandaQueries _queriesComanda;
+        //private readonly ComandaQueries _queriesComanda;
 
 
-        public ComandaService(IGenericRepository repository, ComandaQueries queriesComanda)
+        public ComandaService(IGenericRepository repository)//, ComandaQueries queriesComanda
         {
             _repository = repository;
-            _queriesComanda = queriesComanda;
+            //_queriesComanda = queriesComanda;
 
         }
 
@@ -31,6 +30,14 @@ namespace Application.Services
 
         }
 
-      
+        public Comanda GetAll(DateTime? Fecha)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Comanda GetComandaById(Guid Id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

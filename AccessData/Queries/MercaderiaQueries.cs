@@ -2,7 +2,6 @@
 using Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -19,14 +18,6 @@ namespace AccessData.Queries
             this.connection = connection;
             this.sqlKataCompiler = sqlKataCompiler;
             database = new QueryFactory(connection, sqlKataCompiler);
-        }
-
-        public List<Mercaderia> ListarMercaderia()
-        {
-            var query = database.Query("Mercaderia");
-            var result = query.Get<Mercaderia>().ToList();
-
-            return result;
         }
 
         public Mercaderia GetMercaderiaById(int id)

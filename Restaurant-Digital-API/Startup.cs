@@ -1,9 +1,7 @@
 using AccessData;
 using AccessData.Commands;
-using AccessData.Queries;
 using Application.Services;
 using Domain.Commands;
-using Domain.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
@@ -51,8 +49,8 @@ namespace Restaurant_Digital_API
             services.AddTransient<IGenericRepository, GenericRepository>();
             services.AddTransient<IComandaService, ComandaService>();
             services.AddTransient<IMercaderiaService, MercaderiaService>();
-            services.AddTransient<IMercaderiaQueries, MercaderiaQueries>();
-            services.AddTransient<IComandaQueries, ComandaQueries>();
+            //services.AddTransient<IMercaderiaQueries, MercaderiaQueries>();
+            //services.AddTransient<IComandaQueries, ComandaQueries>();
 
             services.AddCors(c =>
             {
