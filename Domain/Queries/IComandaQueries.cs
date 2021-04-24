@@ -1,10 +1,13 @@
-﻿using Domain.Models;
+﻿using Domain.DTOs;
+using Domain.Models;
 using System;
+using System.Collections.Generic;
 
 namespace Domain.Queries
 {
     public interface IComandaQueries
     {
-        Comanda GetComandaById(Guid id);
+        ComandaResponse GetComandaById(Guid id);
+        List<ComandaResponse> GetAll(DateTime? Fecha);
     }
 }

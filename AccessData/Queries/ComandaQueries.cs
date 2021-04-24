@@ -23,27 +23,40 @@ namespace AccessData.Queries
             database = new QueryFactory(connection, sqlKataCompiler);
         }
 
-        public Comanda GetComandaById(Guid id)
+        public List<ComandaResponse> GetAll(DateTime? Fecha)
+        {
+            if (Fecha == null)
+            {
+                var query = database.Query("Comanda");               
+
+               var result= query.Get<ComandaResponse>().ToList();
+
+                return result;
+            }
+            else
+            {
+                var query = database.Query("Comanda")
+                    .WhereDate("Comanda.Fecha","=",Fecha);
+
+                var result = query.Get<ComandaResponse>().ToList();
+
+                return result;
+            }
+        }
+
+        public ComandaResponse GetComandaById(Guid id)
         {
             var query = database.Query("Comanda")
-            .Where("Comanda.ComandaId", "=", id).FirstOrDefault<Comanda>();
+                .Where("Comanda.ComandaId","=",id)            
+                .FirstOrDefault<ComandaResponse>();
+            //    .Select("FormaEntregaId as FormaEntrega, ComandaId,Fecha,PrecioTotal")
+            //.Where("Comanda.ComandaId", "=", id).FirstOrDefault<ComandaResponse>();
 
+            //var result = query.Get<ComandaResponse>();
+            
             return query;
         }
 
-
-        public List<MercaderiasComandaDTO> GetMercaderiasByComandaId(Guid id)
-        {
-            var query = database.Query("Comanda")
-                .SelectRaw("Comanda.ComandaId ,Comanda.Fecha ,Comanda.PrecioTotal,Mercaderia.Nombre ,TipoMercaderia.Descripcion as TipoMercaderia,TipoMercaderia.TipoMercaderiaId")
-            .Join("ComandaMercaderia", "ComandaMercaderia.ComandaId", "Comanda.ComandaId")
-            .Join("Mercaderia", "Mercaderia.MercaderiaId", "ComandaMercaderia.MercaderiaId")
-            .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
-            .Where("Comanda.ComandaId", "=", id);
-
-            var result = query.Get<MercaderiasComandaDTO>().ToList();
-
-            return result;
-        }
+       
     }
 }

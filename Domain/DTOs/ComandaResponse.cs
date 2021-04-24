@@ -9,7 +9,7 @@ namespace Domain.DTOs
         public int PrecioTotal { get; set; }
         public DateTime Fecha { get; set; }
 
-        public int FormaEntrega { get; set; }
+        public int FormaEntregaId { get; set; }
         public List<string> Mercaderia { get; set; }
     }
 }

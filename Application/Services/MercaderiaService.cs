@@ -1,6 +1,8 @@
-﻿using Domain.Commands;
+﻿
+using Domain.Commands;
 using Domain.DTOs;
 using Domain.Models;
+using Domain.Queries;
 using System.Collections.Generic;
 
 namespace Application.Services
@@ -16,12 +18,12 @@ namespace Application.Services
     public class MercaderiaService : IMercaderiaService
     {
         private readonly IGenericRepository _repository;
-        //private readonly MercaderiaQueries _queriesMercaderia;
+        private readonly IMercaderiaQueries _queriesMercaderia;
 
-        public MercaderiaService(IGenericRepository repository)//, MercaderiaQueries queriesMercaderia
+        public MercaderiaService(IGenericRepository repository, IMercaderiaQueries queriesMercaderia)
         {
             _repository = repository;
-            //_queriesMercaderia = queriesMercaderia;
+            _queriesMercaderia = queriesMercaderia;
 
         }
 
@@ -59,7 +61,7 @@ namespace Application.Services
 
         public Mercaderia GetMercaderiaById(int Id)
         {
-            throw new System.NotImplementedException();
+            return _queriesMercaderia.GetMercaderiaById(Id);
         }
 
         public void UpdateMercaderia(int Id)

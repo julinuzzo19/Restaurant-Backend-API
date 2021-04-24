@@ -10,8 +10,8 @@ namespace Application.Services
     public interface IComandaService
     {
         ComandaResponse CreateComanda(ComandaDTO comandaDTO);
-        Comanda GetAll(DateTime? Fecha);
-        Comanda GetComandaById(Guid Id);
+        List<ComandaResponse> GetAll(string Fecha);
+        ComandaResponse GetComandaById(Guid Id);
     }
 
     public class ComandaService : IComandaService
@@ -30,6 +30,8 @@ namespace Application.Services
 
         public ComandaResponse CreateComanda(ComandaDTO comandaDTO)
         {
+            
+            
             Comanda Comanda = new Comanda
             {
                 ComandaId = Guid.NewGuid(),
@@ -38,7 +40,7 @@ namespace Application.Services
             };
 
             int PrecioTotal = 0;
-            List<string> ListaMercaderia =new List<string>();
+            List<string> ListaMercaderia = new List<string>();
 
             foreach (var item in comandaDTO.MercaderiasId)
             {
@@ -50,29 +52,39 @@ namespace Application.Services
                 _repository.Add<ComandaMercaderia>(relacion);
             }
             Comanda.PrecioTotal = PrecioTotal;
-           
+
             _repository.Add<Comanda>(Comanda);
             _repository.SaveChanges();
 
-            return new ComandaResponse 
+            return new ComandaResponse
             {
-                ComandaId=Comanda.ComandaId,
-                PrecioTotal=Comanda.PrecioTotal,
-                Fecha=Comanda.Fecha,
-                FormaEntrega=Comanda.FormaEntregaId,
-                Mercaderia=ListaMercaderia       
+                ComandaId = Comanda.ComandaId,
+                PrecioTotal = Comanda.PrecioTotal,
+                Fecha = Comanda.Fecha,
+                FormaEntregaId = Comanda.FormaEntregaId,
+                Mercaderia = ListaMercaderia
             };
-  
+
         }
 
-        public Comanda GetAll(DateTime? Fecha)
+        public List<ComandaResponse> GetAll(string? Fecha)
         {
-            throw new NotImplementedException();
+            if (Fecha != null)
+            {
+                DateTime fecha = Convert.ToDateTime(Fecha);
+
+                return _queriesComanda.GetAll(fecha);
+            }
+            else 
+            {
+                return _queriesComanda.GetAll(null);
+            }
         }
 
-        public Comanda GetComandaById(Guid Id)
+        public ComandaResponse GetComandaById(Guid Id)
         {
-            throw new NotImplementedException();
+            return _queriesComanda.GetComandaById(Id);//FALTA MERCADERIA IDS
+            
         }
     }
 }

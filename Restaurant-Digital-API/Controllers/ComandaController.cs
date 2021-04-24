@@ -1,5 +1,6 @@
 ﻿using Application.Services;
 using Domain.DTOs;
+using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -27,7 +28,40 @@ namespace Restaurant_Digital_API.Controllers
             {
                 return new JsonResult(e.Message) { StatusCode = 401 };
             }
+        }
 
+        [HttpGet("{Id?}")]
+        public IActionResult GetById(Guid Id)
+        {
+            try
+            {
+                 ComandaResponse comanda = _service.GetComandaById(Id);
+                if (comanda != null)
+                {
+                    return new JsonResult(comanda) { StatusCode = 200 };
+                }
+                else
+                {
+                    return new NotFoundResult();
+                }
+            }
+            catch (Exception)
+            {
+                return new NotFoundResult();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Getall(string? Fecha)
+        {
+            try
+            {
+                return new JsonResult(_service.GetAll(Fecha)) { StatusCode = 200 };
+            }
+            catch (Exception)
+            {
+                return new BadRequestResult();
+            }
         }
     }
 }
