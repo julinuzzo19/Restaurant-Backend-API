@@ -17,7 +17,7 @@ namespace Restaurant_Digital_API.Controllers
         }
 
 
-        // POST: api/Alquileres       
+        // POST: api/      
         [HttpPost]
         public IActionResult Post(MercaderiaDTO mercaderia)
         {
@@ -27,7 +27,7 @@ namespace Restaurant_Digital_API.Controllers
             }
             catch (Exception e)
             {
-                return new JsonResult(e.Message) {StatusCode = 401};
+                return new JsonResult(e.Message) { StatusCode = 401 };
             }
 
         }

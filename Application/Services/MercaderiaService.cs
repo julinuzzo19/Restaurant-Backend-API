@@ -27,21 +27,22 @@ namespace Application.Services
 
         public MercaderiaResponse CreateMercaderia(MercaderiaDTO mercaderia)
         {
-            Mercaderia Mercaderia = new Mercaderia 
+            Mercaderia Mercaderia = new Mercaderia
             {
-                Nombre=mercaderia.Nombre,
-                TipoMercaderiaId=mercaderia.TipoMercaderiaId,
-                Precio=mercaderia.Precio,
-                Imagen=mercaderia.Imagen,
-                Preparación=mercaderia.Preparación,
-                Ingredientes=mercaderia.Ingredientes                        
+                Nombre = mercaderia.Nombre,
+                TipoMercaderiaId = mercaderia.TipoMercaderiaId,
+                Precio = mercaderia.Precio,
+                Imagen = mercaderia.Imagen,
+                Preparación = mercaderia.Preparación,
+                Ingredientes = mercaderia.Ingredientes
             };
 
             _repository.Add<Mercaderia>(Mercaderia);
             _repository.SaveChanges();
 
-            return new MercaderiaResponse {
-                MercaderiaId= Mercaderia.MercaderiaId,
+            return new MercaderiaResponse
+            {
+                MercaderiaId = Mercaderia.MercaderiaId,
                 Nombre = Mercaderia.Nombre,
                 TipoMercaderiaId = Mercaderia.TipoMercaderiaId,
                 Precio = Mercaderia.Precio,
