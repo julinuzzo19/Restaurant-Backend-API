@@ -9,9 +9,9 @@ namespace Application.Services
 {
     public interface IComandaService
     {
-        ComandaResponse CreateComanda(ComandaDTO comandaDTO);
-        List<ComandaResponse> GetAll(string Fecha);
-        ComandaResponse GetComandaById(Guid Id);
+        ComandaResponseCreated CreateComanda(ComandaDTO comandaDTO);
+        List<ComandaConMercaderiaList> GetAll(string Fecha);
+        Comanda GetComandaById(Guid Id);
     }
 
     public class ComandaService : IComandaService
@@ -28,10 +28,10 @@ namespace Application.Services
         }
 
 
-        public ComandaResponse CreateComanda(ComandaDTO comandaDTO)
+        public ComandaResponseCreated CreateComanda(ComandaDTO comandaDTO)
         {
-            
-            
+
+
             Comanda Comanda = new Comanda
             {
                 ComandaId = Guid.NewGuid(),
@@ -44,7 +44,7 @@ namespace Application.Services
 
             foreach (var item in comandaDTO.MercaderiasId)
             {
-                Mercaderia mercaderia = _queriesMercaderia.GetMercaderiaById(item);
+                MercaderiaResponse mercaderia = _queriesMercaderia.GetMercaderiaById(item);
                 PrecioTotal = PrecioTotal + mercaderia.Precio;
                 ListaMercaderia.Add(mercaderia.Nombre);
 
@@ -56,7 +56,7 @@ namespace Application.Services
             _repository.Add<Comanda>(Comanda);
             _repository.SaveChanges();
 
-            return new ComandaResponse
+            return new ComandaResponseCreated
             {
                 ComandaId = Comanda.ComandaId,
                 PrecioTotal = Comanda.PrecioTotal,
@@ -67,24 +67,57 @@ namespace Application.Services
 
         }
 
-        public List<ComandaResponse> GetAll(string? Fecha)
+        public List<ComandaConMercaderiaList> GetAll(string? Fecha)
         {
+            List<Comanda> comandas;
+            List<ComandaConMercaderiaList> comandasMercaderiaList = new List<ComandaConMercaderiaList>();
+
             if (Fecha != null)
             {
                 DateTime fecha = Convert.ToDateTime(Fecha);
-
-                return _queriesComanda.GetAll(fecha);
+                comandas = _queriesComanda.GetAll(fecha);
             }
-            else 
+            else
             {
-                return _queriesComanda.GetAll(null);
+                comandas = _queriesComanda.GetAll(null);
             }
+
+            //Recorro las comandas obtenidas
+            foreach (var comanda in comandas)
+            {
+                List<ComandaResponse> ListMercaderiaByComanda = _queriesComanda.GetMercaderiasByComandaId(comanda.ComandaId);
+                List<string> NombreMercaderiaList = new List<string>();
+
+
+                //Creo una lista con los nombres de todas las mercaderias de una comanda
+                foreach (var item in ListMercaderiaByComanda)
+                {
+                    NombreMercaderiaList.Add(item.NombreMercaderia);
+                }
+
+                //Creo la comanda a retornar con la lista de mercaderia
+                ComandaConMercaderiaList comandaMercaderia = new ComandaConMercaderiaList
+                {
+                    ComandaId = comanda.ComandaId,
+                    Fecha = comanda.Fecha.ToString(),
+                    PrecioTotal = comanda.PrecioTotal,
+                    FormaEntregaId = comanda.FormaEntregaId,
+                    NombreMercaderia = NombreMercaderiaList
+                };
+
+                comandasMercaderiaList.Add(comandaMercaderia);
+            }
+
+
+            return comandasMercaderiaList;
+
         }
 
-        public ComandaResponse GetComandaById(Guid Id)
+        public Comanda GetComandaById(Guid Id)
         {
-            return _queriesComanda.GetComandaById(Id);//FALTA MERCADERIA IDS
-            
+            return _queriesComanda.GetComandaById(Id);
+
         }
+
     }
 }

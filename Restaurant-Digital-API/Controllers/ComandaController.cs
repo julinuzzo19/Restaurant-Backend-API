@@ -30,12 +30,12 @@ namespace Restaurant_Digital_API.Controllers
             }
         }
 
-        [HttpGet("{Id?}")]
+        [HttpGet("{Id}")]
         public IActionResult GetById(Guid Id)
         {
             try
             {
-                 ComandaResponse comanda = _service.GetComandaById(Id);
+                Comanda comanda = _service.GetComandaById(Id);
                 if (comanda != null)
                 {
                     return new JsonResult(comanda) { StatusCode = 200 };

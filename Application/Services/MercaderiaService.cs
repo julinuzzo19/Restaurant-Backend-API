@@ -12,7 +12,7 @@ namespace Application.Services
         MercaderiaResponse CreateMercaderia(MercaderiaDTO mercaderia);
         List<Mercaderia> GetAll(int? TipoMercaderiaId);
         void UpdateMercaderia(int Id);
-        Mercaderia GetMercaderiaById(int Id);
+        MercaderiaResponse GetMercaderiaById(int Id);
     }
 
     public class MercaderiaService : IMercaderiaService
@@ -59,7 +59,7 @@ namespace Application.Services
             throw new System.NotImplementedException();
         }
 
-        public Mercaderia GetMercaderiaById(int Id)
+        public MercaderiaResponse GetMercaderiaById(int Id)
         {
             return _queriesMercaderia.GetMercaderiaById(Id);
         }

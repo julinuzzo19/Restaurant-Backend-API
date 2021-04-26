@@ -1,9 +1,9 @@
-﻿using Domain.Models;
+﻿using Domain.DTOs;
 
 namespace Domain.Queries
 {
     public interface IMercaderiaQueries
     {
-        Mercaderia GetMercaderiaById(int id);
+        MercaderiaResponse GetMercaderiaById(int id);
     }
 }

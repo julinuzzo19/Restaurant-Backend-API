@@ -1,6 +1,5 @@
 ﻿using Application.Services;
 using Domain.DTOs;
-using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -16,7 +15,7 @@ namespace Restaurant_Digital_API.Controllers
         {
             _service = service;
         }
-    
+
         [HttpPost]
         public IActionResult Post(MercaderiaDTO mercaderia)
         {
@@ -30,12 +29,12 @@ namespace Restaurant_Digital_API.Controllers
             }
         }
 
-        [HttpGet("{Id?}")]
+        [HttpGet("{Id}")]
         public IActionResult GetById(int Id)
         {
             try
             {
-                Mercaderia mercaderia = _service.GetMercaderiaById(Id);
+                MercaderiaResponse mercaderia = _service.GetMercaderiaById(Id);
                 if (mercaderia != null)
                 {
                     return new JsonResult(mercaderia) { StatusCode = 200 };
@@ -49,6 +48,18 @@ namespace Restaurant_Digital_API.Controllers
             {
                 return new NotFoundResult();
             }
+        }
+
+        [HttpDelete("{Id}")]
+        public IActionResult DeleteById(int Id)
+        {
+            throw new NotImplementedException();
+        }
+
+        [HttpPut]
+        public IActionResult UpdateById()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Domain.Models;
+﻿using Domain.DTOs;
 using Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
@@ -20,9 +20,9 @@ namespace AccessData.Queries
             database = new QueryFactory(connection, sqlKataCompiler);
         }
 
-        public Mercaderia GetMercaderiaById(int id)
+        public MercaderiaResponse GetMercaderiaById(int id)
         {
-            var query = database.Query("Mercaderia").Where("Mercaderia.MercaderiaId", "=", id).FirstOrDefault<Mercaderia>();
+            var query = database.Query("Mercaderia").Where("Mercaderia.MercaderiaId", "=", id).FirstOrDefault<MercaderiaResponse>();
 
             return query;
         }

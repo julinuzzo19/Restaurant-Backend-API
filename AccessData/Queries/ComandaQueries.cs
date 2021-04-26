@@ -23,40 +23,58 @@ namespace AccessData.Queries
             database = new QueryFactory(connection, sqlKataCompiler);
         }
 
-        public List<ComandaResponse> GetAll(DateTime? Fecha)
+        public List<Comanda> GetAll(DateTime? Fecha)
         {
             if (Fecha == null)
             {
-                var query = database.Query("Comanda");               
+                var query = database.Query("Comanda");
 
-               var result= query.Get<ComandaResponse>().ToList();
+                var result = query.Get<Comanda>().ToList();
 
                 return result;
             }
             else
             {
                 var query = database.Query("Comanda")
-                    .WhereDate("Comanda.Fecha","=",Fecha);
+                    .WhereDate("Comanda.Fecha", "=", Fecha);
 
-                var result = query.Get<ComandaResponse>().ToList();
+                var result = query.Get<Comanda>().ToList();
 
                 return result;
             }
         }
 
-        public ComandaResponse GetComandaById(Guid id)
+        public Comanda GetComandaById(Guid id)
         {
             var query = database.Query("Comanda")
-                .Where("Comanda.ComandaId","=",id)            
-                .FirstOrDefault<ComandaResponse>();
+                .Where("Comanda.ComandaId", "=", id)
+                .FirstOrDefault<Comanda>();
             //    .Select("FormaEntregaId as FormaEntrega, ComandaId,Fecha,PrecioTotal")
             //.Where("Comanda.ComandaId", "=", id).FirstOrDefault<ComandaResponse>();
 
             //var result = query.Get<ComandaResponse>();
-            
+
             return query;
         }
 
-       
+        public List<ComandaResponse> GetMercaderiasByComandaId(Guid id)
+        {
+            var query = database.Query("Comanda")
+                .Select("Comanda.ComandaId", "Comanda.Fecha", "Mercaderia.Nombre", "FormaEntregaId", "Mercaderia.MercaderiaId", "Mercaderia.Nombre as NombreMercaderia")
+                .Join("ComandaMercaderia", "ComandaMercaderia.ComandaId", "Comanda.ComandaId")
+                .Join("Mercaderia", "Mercaderia.MercaderiaId", "ComandaMercaderia.MercaderiaId")
+                .Where("Comanda.ComandaId", "=", id)
+                ;
+
+            var result = query.Get<ComandaResponse>().ToList();
+
+            return result;
+
+
+
+
+        }
+
+
     }
 }
