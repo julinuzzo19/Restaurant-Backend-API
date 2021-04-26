@@ -2,6 +2,7 @@
 using Domain.Queries;
 using SqlKata.Compilers;
 using SqlKata.Execution;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
@@ -25,6 +26,33 @@ namespace AccessData.Queries
             var query = database.Query("Mercaderia").Where("Mercaderia.MercaderiaId", "=", id).FirstOrDefault<MercaderiaResponse>();
 
             return query;
+        }
+
+        public List<MercaderiaResponse> GetAll(string TipoMercaderia)
+        {
+            if (string.IsNullOrWhiteSpace(TipoMercaderia))
+            {
+                var query = database.Query("Mercaderia");
+
+                var result = query.Get<MercaderiaResponse>().ToList();
+
+                return result;
+            }
+
+            else
+            {
+                var query = database.Query("Mercaderia")
+                    .Join("TipoMercaderia","TipoMercaderia.TipoMercaderiaId","Mercaderia.TipoMercaderiaId")
+                    .WhereRaw($"TipoMercaderia.Descripcion like '%{TipoMercaderia}%'","sql");
+
+
+                var result = query.Get<MercaderiaResponse>().ToList();
+
+                return result;
+            }
+           
+
+            throw new System.NotImplementedException();
         }
 
 

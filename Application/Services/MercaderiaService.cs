@@ -10,7 +10,7 @@ namespace Application.Services
     public interface IMercaderiaService
     {
         MercaderiaResponse CreateMercaderia(MercaderiaDTO mercaderia);
-        List<Mercaderia> GetAll(int? TipoMercaderiaId);
+        List<MercaderiaResponse> GetAll(string? TipoMercaderiaId);
         void UpdateMercaderia(int MercaderiaId, MercaderiaDTO mercaderiaDTO);
         MercaderiaResponse GetMercaderiaById(int Id);
         void DeleteMercaderiaById(int MercaderiaId);
@@ -74,9 +74,9 @@ namespace Application.Services
             _repository.SaveChanges();
         }
 
-        public List<Mercaderia> GetAll(int? TipoMercaderiaId)
+        public List<MercaderiaResponse> GetAll(string? TipoMercaderiaId)
         {
-            throw new System.NotImplementedException();
+            return _queriesMercaderia.GetAll(TipoMercaderiaId);
         }
 
         public MercaderiaResponse GetMercaderiaById(int Id)
@@ -86,8 +86,6 @@ namespace Application.Services
 
         public void UpdateMercaderia(int MercaderiaId, MercaderiaDTO mercaderiaDTO)
         {
-            //MercaderiaResponse Mercaderia = _queriesMercaderia.GetMercaderiaById(MercaderiaId);
-
             Mercaderia mercaderia = new Mercaderia
             {
                 MercaderiaId = MercaderiaId,

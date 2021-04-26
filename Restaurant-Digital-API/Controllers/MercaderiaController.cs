@@ -2,6 +2,7 @@
 using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace Restaurant_Digital_API.Controllers
 {
@@ -35,6 +36,27 @@ namespace Restaurant_Digital_API.Controllers
             try
             {
                 MercaderiaResponse mercaderia = _service.GetMercaderiaById(Id);
+                if (mercaderia != null)
+                {
+                    return new JsonResult(mercaderia) { StatusCode = 200 };
+                }
+                else
+                {
+                    return new NotFoundResult();
+                }
+            }
+            catch (Exception)
+            {
+                return new NotFoundResult();
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetAll(string TipoMercaderia)
+        {
+            try
+            {
+                List<MercaderiaResponse> mercaderia = _service.GetAll(TipoMercaderia);
                 if (mercaderia != null)
                 {
                     return new JsonResult(mercaderia) { StatusCode = 200 };
