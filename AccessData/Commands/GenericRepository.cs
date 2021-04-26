@@ -1,7 +1,6 @@
 ﻿
 using Domain.Commands;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace AccessData.Commands
 {
@@ -19,9 +18,9 @@ namespace AccessData.Commands
             _context.Add(entity);
         }
 
-        public void Delete(int id)
+        public void Delete<T>(T entity) where T : class
         {
-            throw new Exception();
+            _context.Remove(entity);
         }
 
         public void Update<T>(T entity) where T : class

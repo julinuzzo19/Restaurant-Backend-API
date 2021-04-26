@@ -13,6 +13,7 @@ namespace Application.Services
         List<Mercaderia> GetAll(int? TipoMercaderiaId);
         void UpdateMercaderia(int MercaderiaId, MercaderiaDTO mercaderiaDTO);
         MercaderiaResponse GetMercaderiaById(int Id);
+        void DeleteMercaderiaById(int MercaderiaId);
     }
 
     public class MercaderiaService : IMercaderiaService
@@ -52,6 +53,25 @@ namespace Application.Services
                 Preparación = Mercaderia.Preparación,
                 Ingredientes = Mercaderia.Ingredientes
             };
+        }
+
+        public void DeleteMercaderiaById(int MercaderiaId)
+        {
+            MercaderiaResponse mercaderiaReponse = _queriesMercaderia.GetMercaderiaById(MercaderiaId);
+
+            Mercaderia mercaderia = new Mercaderia
+            {
+                MercaderiaId = mercaderiaReponse.MercaderiaId,
+                Nombre = mercaderiaReponse.Nombre,
+                Precio = mercaderiaReponse.Precio,
+                Ingredientes = mercaderiaReponse.Ingredientes,
+                Preparación = mercaderiaReponse.Preparación,
+                Imagen = mercaderiaReponse.Imagen,
+                TipoMercaderiaId = mercaderiaReponse.TipoMercaderiaId
+            };
+
+            _repository.Delete<Mercaderia>(mercaderia);
+            _repository.SaveChanges();
         }
 
         public List<Mercaderia> GetAll(int? TipoMercaderiaId)

@@ -51,9 +51,18 @@ namespace Restaurant_Digital_API.Controllers
         }
 
         [HttpDelete("{Id}")]
-        public IActionResult DeleteById(int Id)
+        public IActionResult DeleteById([FromRoute] int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _service.DeleteMercaderiaById(Id);
+                return new OkResult();
+            }
+            catch (Exception)
+            {
+                return new NotFoundResult();
+            }
+
         }
 
         [HttpPut("{Id}")]
