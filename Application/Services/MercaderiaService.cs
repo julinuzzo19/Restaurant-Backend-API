@@ -11,7 +11,7 @@ namespace Application.Services
     {
         MercaderiaResponse CreateMercaderia(MercaderiaDTO mercaderia);
         List<Mercaderia> GetAll(int? TipoMercaderiaId);
-        void UpdateMercaderia(int Id);
+        void UpdateMercaderia(int MercaderiaId, MercaderiaDTO mercaderiaDTO);
         MercaderiaResponse GetMercaderiaById(int Id);
     }
 
@@ -64,9 +64,24 @@ namespace Application.Services
             return _queriesMercaderia.GetMercaderiaById(Id);
         }
 
-        public void UpdateMercaderia(int Id)
+        public void UpdateMercaderia(int MercaderiaId, MercaderiaDTO mercaderiaDTO)
         {
-            throw new System.NotImplementedException();
+            //MercaderiaResponse Mercaderia = _queriesMercaderia.GetMercaderiaById(MercaderiaId);
+
+            Mercaderia mercaderia = new Mercaderia
+            {
+                MercaderiaId = MercaderiaId,
+                Nombre = mercaderiaDTO.Nombre,
+                Precio = mercaderiaDTO.Precio,
+                Ingredientes = mercaderiaDTO.Ingredientes,
+                Preparación = mercaderiaDTO.Preparación,
+                Imagen = mercaderiaDTO.Imagen,
+                TipoMercaderiaId = mercaderiaDTO.TipoMercaderiaId
+
+            };
+
+            _repository.Update<Mercaderia>(mercaderia);
+            _repository.SaveChanges();
         }
     }
 }

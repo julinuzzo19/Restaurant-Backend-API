@@ -56,10 +56,18 @@ namespace Restaurant_Digital_API.Controllers
             throw new NotImplementedException();
         }
 
-        [HttpPut]
-        public IActionResult UpdateById()
+        [HttpPut("{Id}")]
+        public IActionResult UpdateById([FromRoute] int Id, MercaderiaDTO mercaderia)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _service.UpdateMercaderia(Id, mercaderia);
+                return new OkResult();
+            }
+            catch (Exception)
+            {
+                return new NotFoundResult();
+            }
         }
     }
 }
