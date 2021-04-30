@@ -42,15 +42,15 @@ namespace AccessData.Queries
             else
             {
                 var query = database.Query("Mercaderia")
-                    .Join("TipoMercaderia","TipoMercaderia.TipoMercaderiaId","Mercaderia.TipoMercaderiaId")
-                    .WhereRaw($"TipoMercaderia.Descripcion like '%{TipoMercaderia}%'","sql");
+                    .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
+                    .WhereRaw($"TipoMercaderia.Descripcion like '%{TipoMercaderia}%'", "sql");
 
 
                 var result = query.Get<MercaderiaResponse>().ToList();
 
                 return result;
             }
-           
+
 
             throw new System.NotImplementedException();
         }

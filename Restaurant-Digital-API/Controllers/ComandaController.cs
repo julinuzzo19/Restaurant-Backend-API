@@ -1,6 +1,5 @@
 ﻿using Application.Services;
 using Domain.DTOs;
-using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -20,14 +19,20 @@ namespace Restaurant_Digital_API.Controllers
         [HttpPost]
         public IActionResult Post(ComandaDTO comanda)
         {
-            try
+            if (comanda.FormaEntrega != null && comanda.FormaEntrega != 0 && comanda.MercaderiasId != null)
             {
-                return new JsonResult(_service.CreateComanda(comanda)) { StatusCode = 201 };
+                try
+                {
+                    ComandaResponseCreated comandaCreated = _service.CreateComanda(comanda);
+                    return new JsonResult(comandaCreated) { StatusCode = 201 };
+                }
+                catch (Exception)
+                {
+                    return new BadRequestResult();
+                }
             }
-            catch (Exception e)
-            {
-                return new JsonResult(e.Message) { StatusCode = 401 };
-            }
+            else return new BadRequestResult();
+
         }
 
         [HttpGet("{Id}")]
@@ -35,7 +40,7 @@ namespace Restaurant_Digital_API.Controllers
         {
             try
             {
-                Comanda comanda = _service.GetComandaById(Id);
+                ComandaResponseCreated comanda = _service.GetComandaById(Id);
                 if (comanda != null)
                 {
                     return new JsonResult(comanda) { StatusCode = 200 };
