@@ -28,9 +28,9 @@ namespace AccessData.Queries
             return query;
         }
 
-        public List<MercaderiaResponse> GetAll(string TipoMercaderia)
+        public List<MercaderiaResponse> GetAll(string tipoMercaderia, int TipoMercaderiaId)
         {
-            if (string.IsNullOrWhiteSpace(TipoMercaderia))
+            if (string.IsNullOrWhiteSpace(tipoMercaderia) && TipoMercaderiaId == 0)
             {
                 var query = database.Query("Mercaderia");
 
@@ -39,20 +39,31 @@ namespace AccessData.Queries
                 return result;
             }
 
-            else
+            if (tipoMercaderia != null)
             {
                 var query = database.Query("Mercaderia")
                     .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
-                    .WhereRaw($"TipoMercaderia.Descripcion like '%{TipoMercaderia}%'", "sql");
+                    .WhereRaw($"TipoMercaderia.Descripcion like '%{tipoMercaderia}%'", "sql");
 
 
                 var result = query.Get<MercaderiaResponse>().ToList();
 
                 return result;
             }
+            else
+            {
+                var query = database.Query("Mercaderia")
+                .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
+                .Where("Mercaderia.TipoMercaderiaId", "=", TipoMercaderiaId);
 
 
-            throw new System.NotImplementedException();
+                var result = query.Get<MercaderiaResponse>().ToList();
+
+                return result;
+
+            }
+
+
         }
 
 

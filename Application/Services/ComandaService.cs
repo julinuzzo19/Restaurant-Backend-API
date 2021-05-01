@@ -76,7 +76,7 @@ namespace Application.Services
 
         }
 
-        public List<ComandaConMercaderiaList> GetAll(string? Fecha)
+        public List<ComandaConMercaderiaList> GetAll(string Fecha)
         {
             List<Comanda> comandas;
             List<ComandaConMercaderiaList> comandasMercaderiaList = new List<ComandaConMercaderiaList>();
