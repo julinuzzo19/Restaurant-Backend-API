@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="10.1.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\AccessData\AccessData.csproj" />
     <ProjectReference Include="..\Domain\Domain.csproj" />
   </ItemGroup>

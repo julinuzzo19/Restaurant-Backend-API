@@ -1,5 +1,4 @@
-﻿
-using Domain.Commands;
+﻿using Domain.Commands;
 using Microsoft.EntityFrameworkCore;
 
 namespace AccessData.Commands

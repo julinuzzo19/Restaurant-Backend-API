@@ -49,10 +49,6 @@ namespace AccessData.Queries
             var query = database.Query("Comanda")
                 .Where("Comanda.ComandaId", "=", id)
                 .FirstOrDefault<Comanda>();
-            //    .Select("FormaEntregaId as FormaEntrega, ComandaId,Fecha,PrecioTotal")
-            //.Where("Comanda.ComandaId", "=", id).FirstOrDefault<ComandaResponse>();
-
-            //var result = query.Get<ComandaResponse>();
 
             return query;
         }
@@ -69,12 +65,6 @@ namespace AccessData.Queries
             var result = query.Get<ComandaResponse>().ToList();
 
             return result;
-
-
-
-
         }
-
-
     }
 }

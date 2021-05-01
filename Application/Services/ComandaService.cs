@@ -124,6 +124,10 @@ namespace Application.Services
         {
 
             Comanda comanda = _queriesComanda.GetComandaById(Id);
+            if (comanda == null)
+            {
+                throw new Exception();
+            }
             List<ComandaResponse> ListMercaderiaByComanda = _queriesComanda.GetMercaderiasByComandaId(comanda.ComandaId);
 
             List<string> ListaMercaderia = new List<string>();

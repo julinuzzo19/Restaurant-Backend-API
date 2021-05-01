@@ -3,6 +3,7 @@ using Domain.Commands;
 using Domain.DTOs;
 using Domain.Models;
 using Domain.Queries;
+using System;
 using System.Collections.Generic;
 
 namespace Application.Services
@@ -58,6 +59,11 @@ namespace Application.Services
         public void DeleteMercaderiaById(int MercaderiaId)
         {
             MercaderiaResponse mercaderiaReponse = _queriesMercaderia.GetMercaderiaById(MercaderiaId);
+
+            if (mercaderiaReponse == null)
+            {
+                throw new Exception();
+            }
 
             Mercaderia mercaderia = new Mercaderia
             {

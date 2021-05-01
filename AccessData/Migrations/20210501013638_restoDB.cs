@@ -3,7 +3,7 @@ using System;
 
 namespace AccessData.Migrations
 {
-    public partial class dbresto : Migration
+    public partial class restoDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
