@@ -1,4 +1,5 @@
-﻿using Application.Services;
+﻿using Application;
+using Application.Services;
 using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,7 +20,7 @@ namespace Restaurant_Digital_API.Controllers
         [HttpPost]
         public IActionResult Post(ComandaDTO comanda)
         {
-            if (comanda.FormaEntrega != null && comanda.FormaEntrega != 0 && comanda.MercaderiasId != null)
+            if (Validation.ValidarComandaDTO(comanda))
             {
                 try
                 {
@@ -31,8 +32,10 @@ namespace Restaurant_Digital_API.Controllers
                     return new BadRequestResult();
                 }
             }
-            else return new BadRequestResult();
-
+            else
+            {
+                return new BadRequestResult();
+            }
         }
 
         [HttpGet("{Id}")]

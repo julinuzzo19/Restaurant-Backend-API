@@ -1,4 +1,5 @@
-﻿using Application.Services;
+﻿using Application;
+using Application.Services;
 using Domain.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,13 +21,22 @@ namespace Restaurant_Digital_API.Controllers
         [HttpPost]
         public IActionResult Post(MercaderiaDTO mercaderia)
         {
-            try
+
+            if (Validation.ValidarMercaderiaDTO(mercaderia))
             {
-                return new JsonResult(_service.CreateMercaderia(mercaderia)) { StatusCode = 201 };
+                try
+                {
+                    MercaderiaResponse mercaderiaResponse = _service.CreateMercaderia(mercaderia);
+                    return new JsonResult(mercaderiaResponse) { StatusCode = 201 };
+                }
+                catch (Exception)
+                {
+                    return new BadRequestResult();
+                }
             }
-            catch (Exception e)
+            else
             {
-                return new JsonResult(e.Message) { StatusCode = 401 };
+                return new BadRequestResult();
             }
         }
 
