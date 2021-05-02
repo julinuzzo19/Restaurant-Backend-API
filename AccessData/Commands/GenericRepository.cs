@@ -31,6 +31,5 @@ namespace AccessData.Commands
         {
             _context.SaveChanges();
         }
-
     }
 }

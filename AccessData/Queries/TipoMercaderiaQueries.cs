@@ -24,6 +24,5 @@ namespace AccessData.Queries
         {
             return database.Query("TipoMercaderia").Get<TipoMercaderia>().ToList();
         }
-
     }
 }

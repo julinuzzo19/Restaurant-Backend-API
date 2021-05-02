@@ -26,10 +26,8 @@ namespace Restaurant_Digital_API
 
         public IConfiguration Configuration { get; }
 
-
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             var connectionString = Configuration.GetSection("ConnectionString").Value;
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connectionString));
@@ -46,7 +44,6 @@ namespace Restaurant_Digital_API
                 return new SqlConnection(connectionString);
             });
 
-
             //Injection dependences
             services.AddTransient<IGenericRepository, GenericRepository>();
             services.AddTransient<IComandaService, ComandaService>();
@@ -58,10 +55,7 @@ namespace Restaurant_Digital_API
             {
                 c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-
         }
-
-
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

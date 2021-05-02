@@ -14,9 +14,8 @@ namespace Domain.Models
 
         //FK
         [Required] public int TipoMercaderiaId { get; set; }
+
         [ForeignKey("TipoMercaderiaId")]
         public virtual TipoMercaderia TipoMercaderia { get; set; }
-
-
     }
 }

@@ -53,8 +53,6 @@ namespace AccessData
                 new TipoMercaderia { TipoMercaderiaId = 9, Descripcion = "Cerveza Artesanal" },
                 new TipoMercaderia { TipoMercaderiaId = 10, Descripcion = "Postres" }
                 );
-
         }
-
     }
 }

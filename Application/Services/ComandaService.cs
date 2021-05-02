@@ -27,11 +27,8 @@ namespace Application.Services
             _queriesMercaderia = queriesMercaderia;
         }
 
-
         public ComandaResponseCreated CreateComanda(ComandaDTO comandaDTO)
         {
-
-
             Comanda Comanda = new Comanda
             {
                 ComandaId = Guid.NewGuid(),
@@ -41,7 +38,6 @@ namespace Application.Services
 
             int PrecioTotal = 0;
             List<string> ListaMercaderia = new List<string>();
-
 
             foreach (var item in comandaDTO.MercaderiasId)
             {
@@ -73,7 +69,6 @@ namespace Application.Services
                 FormaEntregaId = Comanda.FormaEntregaId,
                 Mercaderia = ListaMercaderia
             };
-
         }
 
         public List<ComandaConMercaderiaList> GetAll(string Fecha)
@@ -96,7 +91,6 @@ namespace Application.Services
             {
                 List<ComandaResponse> ListMercaderiaByComanda = _queriesComanda.GetMercaderiasByComandaId(comanda.ComandaId);
                 List<string> NombreMercaderiaList = new List<string>();
-
 
                 //Creo una lista con los nombres de todas las mercaderias de una comanda
                 foreach (var item in ListMercaderiaByComanda)
@@ -122,7 +116,6 @@ namespace Application.Services
 
         public ComandaResponseCreated GetComandaById(Guid Id)
         {
-
             Comanda comanda = _queriesComanda.GetComandaById(Id);
             if (comanda == null)
             {
@@ -144,10 +137,7 @@ namespace Application.Services
                 Fecha = comanda.Fecha,
                 FormaEntregaId = comanda.FormaEntregaId,
                 Mercaderia = ListaMercaderia
-
             };
-
         }
-
     }
 }

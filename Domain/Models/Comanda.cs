@@ -12,8 +12,8 @@ namespace Domain.Models
 
         //FK
         [Required] public int FormaEntregaId { get; set; }
+
         [ForeignKey("FormaEntregaId")]
         public virtual FormaEntrega FormaEntrega { get; set; }
-
     }
 }

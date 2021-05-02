@@ -1,5 +1,4 @@
-﻿
-using Domain.Commands;
+﻿using Domain.Commands;
 using Domain.DTOs;
 using Domain.Models;
 using Domain.Queries;
@@ -26,7 +25,6 @@ namespace Application.Services
         {
             _repository = repository;
             _queriesMercaderia = queriesMercaderia;
-
         }
 
         public MercaderiaResponse CreateMercaderia(MercaderiaDTO mercaderia)
@@ -101,7 +99,6 @@ namespace Application.Services
                 Preparación = mercaderiaDTO.Preparación,
                 Imagen = mercaderiaDTO.Imagen,
                 TipoMercaderiaId = mercaderiaDTO.TipoMercaderiaId
-
             };
 
             _repository.Update<Mercaderia>(mercaderia);

@@ -6,6 +6,5 @@ namespace Domain.Models
     {
         [Required] public int TipoMercaderiaId { get; set; }
         [Required] public string Descripcion { get; set; }
-
     }
 }

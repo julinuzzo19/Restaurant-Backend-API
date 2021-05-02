@@ -21,7 +21,6 @@ namespace Restaurant_Digital_API.Controllers
         [HttpPost]
         public IActionResult Post(MercaderiaDTO mercaderia)
         {
-
             if (Validation.ValidarMercaderiaDTO(mercaderia))
             {
                 try
@@ -94,7 +93,6 @@ namespace Restaurant_Digital_API.Controllers
             {
                 return new NotFoundResult();
             }
-
         }
 
         [HttpPut("{Id}")]

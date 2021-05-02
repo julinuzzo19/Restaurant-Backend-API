@@ -27,7 +27,6 @@ namespace AccessData.Queries
             var result = query.Get<FormaEntrega>().ToList();
 
             return result;
-
         }
     }
 }

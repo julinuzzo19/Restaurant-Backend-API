@@ -45,7 +45,6 @@ namespace AccessData.Queries
                     .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
                     .WhereRaw($"TipoMercaderia.Descripcion like '%{tipoMercaderia}%'", "sql");
 
-
                 var result = query.Get<MercaderiaResponse>().ToList();
 
                 return result;
@@ -56,16 +55,10 @@ namespace AccessData.Queries
                 .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
                 .Where("Mercaderia.TipoMercaderiaId", "=", TipoMercaderiaId);
 
-
                 var result = query.Get<MercaderiaResponse>().ToList();
 
                 return result;
-
             }
-
-
         }
-
-
     }
 }
