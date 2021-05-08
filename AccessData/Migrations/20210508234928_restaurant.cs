@@ -3,7 +3,7 @@ using System;
 
 namespace AccessData.Migrations
 {
-    public partial class restoDB : Migration
+    public partial class restaurant : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

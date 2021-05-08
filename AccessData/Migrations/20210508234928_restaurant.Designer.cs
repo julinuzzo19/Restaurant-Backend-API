@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccessData.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210501013638_restoDB")]
-    partial class restoDB
+    [Migration("20210508234928_restaurant")]
+    partial class restaurant
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
