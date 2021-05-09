@@ -11,10 +11,8 @@ namespace Application
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public static bool ValidarComandaDTO(ComandaDTO comanda)
@@ -23,10 +21,8 @@ namespace Application
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

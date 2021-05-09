@@ -39,6 +39,7 @@ namespace Application.Services
             int PrecioTotal = 0;
             List<string> ListaMercaderia = new List<string>();
 
+            //Sumar precio de las mercaderias de la comanda
             foreach (var item in comandaDTO.MercaderiasId)
             {
                 MercaderiaResponse mercaderia = _queriesMercaderia.GetMercaderiaById(item);

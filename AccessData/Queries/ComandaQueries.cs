@@ -59,8 +59,7 @@ namespace AccessData.Queries
                 .Select("Comanda.ComandaId", "Comanda.Fecha", "Mercaderia.Nombre", "FormaEntregaId", "Mercaderia.MercaderiaId", "Mercaderia.Nombre as NombreMercaderia")
                 .Join("ComandaMercaderia", "ComandaMercaderia.ComandaId", "Comanda.ComandaId")
                 .Join("Mercaderia", "Mercaderia.MercaderiaId", "ComandaMercaderia.MercaderiaId")
-                .Where("Comanda.ComandaId", "=", id)
-                ;
+                .Where("Comanda.ComandaId", "=", id);
 
             var result = query.Get<ComandaResponse>().ToList();
 
