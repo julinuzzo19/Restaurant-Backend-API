@@ -10,7 +10,7 @@ namespace Application.Services
     public interface IComandaService
     {
         ComandaResponseCreated CreateComanda(ComandaDTO comandaDTO);
-        List<ComandaConMercaderiaList> GetAll(string Fecha);
+        List<ComandaConMercaderiaList> GetAll(DateTime? Fecha);
         ComandaResponseCreated GetComandaById(Guid Id);
     }
 
@@ -72,20 +72,12 @@ namespace Application.Services
             };
         }
 
-        public List<ComandaConMercaderiaList> GetAll(string Fecha)
+        public List<ComandaConMercaderiaList> GetAll(DateTime? Fecha)
         {
             List<Comanda> comandas;
             List<ComandaConMercaderiaList> comandasMercaderiaList = new List<ComandaConMercaderiaList>();
 
-            if (Fecha != null)
-            {
-                DateTime fecha = Convert.ToDateTime(Fecha);
-                comandas = _queriesComanda.GetAll(fecha);
-            }
-            else
-            {
-                comandas = _queriesComanda.GetAll(null);
-            }
+            comandas = _queriesComanda.GetAll(Fecha);
 
             //Recorro las comandas obtenidas
             foreach (var comanda in comandas)
@@ -103,7 +95,7 @@ namespace Application.Services
                 ComandaConMercaderiaList comandaMercaderia = new ComandaConMercaderiaList
                 {
                     ComandaId = comanda.ComandaId,
-                    Fecha = comanda.Fecha.ToString(),
+                    Fecha = comanda.Fecha,
                     PrecioTotal = comanda.PrecioTotal,
                     FormaEntregaId = comanda.FormaEntregaId,
                     NombreMercaderia = NombreMercaderiaList

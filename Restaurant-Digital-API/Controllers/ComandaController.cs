@@ -61,7 +61,7 @@ namespace Restaurant_Digital_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult Getall(string Fecha)
+        public IActionResult Getall(DateTime? Fecha)
         {
             try
             {
