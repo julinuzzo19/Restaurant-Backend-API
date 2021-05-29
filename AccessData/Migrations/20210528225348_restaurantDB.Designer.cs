@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccessData.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210508234928_restaurant")]
-    partial class restaurant
+    [Migration("20210528225348_restaurantDB")]
+    partial class restaurantDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,7 +120,7 @@ namespace AccessData.Migrations
                     b.Property<int>("Precio")
                         .HasColumnType("int");
 
-                    b.Property<string>("Preparación")
+                    b.Property<string>("Preparacion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -132,6 +132,88 @@ namespace AccessData.Migrations
                     b.HasIndex("TipoMercaderiaId");
 
                     b.ToTable("Mercaderia");
+
+                    b.HasData(
+                        new
+                        {
+                            MercaderiaId = 1,
+                            Imagen = "https://s1.eestatic.com/2021/01/22/ciencia/nutricion/553206479_171070440_1024x576.jpg",
+                            Ingredientes = "Fetas de jamon",
+                            Nombre = "Jamon",
+                            Precio = 150,
+                            Preparacion = "Cortar fetas de jamon",
+                            TipoMercaderiaId = 1
+                        },
+                        new
+                        {
+                            MercaderiaId = 2,
+                            Imagen = "https://lacteoselpuente.com.ar/assets/img/picadita/picada_queso_premium.png",
+                            Ingredientes = "Queso comun, azul y roquefort",
+                            Nombre = "Queso",
+                            Precio = 130,
+                            Preparacion = "Picada con los distintos tipos de queso",
+                            TipoMercaderiaId = 1
+                        },
+                        new
+                        {
+                            MercaderiaId = 3,
+                            Imagen = "https://okdiario.com/img/2019/01/17/pizza-de-atun-con-aceitunas-negras-655x368.jpg",
+                            Ingredientes = "Harina, queso, salsa y aceitunas negras",
+                            Nombre = "Pizza con aceitunas negras",
+                            Precio = 350,
+                            Preparacion = "Hornear pizza y agregar aceitunas",
+                            TipoMercaderiaId = 5
+                        },
+                        new
+                        {
+                            MercaderiaId = 4,
+                            Imagen = "https://unaricareceta.com/wp-content/uploads/2020/01/Webp.net-resizeimage-95.jpg",
+                            Ingredientes = "Ravioles de ricota, salsa fileto y albahaca",
+                            Nombre = "Ravioles de ricota",
+                            Precio = 400,
+                            Preparacion = "Hervir ravioles y colocar salsa",
+                            TipoMercaderiaId = 3
+                        },
+                        new
+                        {
+                            MercaderiaId = 5,
+                            Imagen = "https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/08/09173312/asado.jpg",
+                            Ingredientes = "Carne y sal",
+                            Nombre = "Asado a la parrilla",
+                            Precio = 480,
+                            Preparacion = "Asar la carne",
+                            TipoMercaderiaId = 4
+                        },
+                        new
+                        {
+                            MercaderiaId = 6,
+                            Imagen = "https://infoagro.com.ar/wp-content/uploads/2020/04/cerveza-artesanal-en-crisis-3.jpg",
+                            Ingredientes = "Cerveza artesanal",
+                            Nombre = "Cerveza artesanal",
+                            Precio = 200,
+                            Preparacion = "Cerveza estacionada",
+                            TipoMercaderiaId = 9
+                        },
+                        new
+                        {
+                            MercaderiaId = 7,
+                            Imagen = "https://s1.eestatic.com/2021/01/22/ciencia/nutricion/553206479_171070440_1024x576.jpg",
+                            Ingredientes = "Lechuga, nueces, hinojo y hongos",
+                            Nombre = "Ensalada Waldorf",
+                            Precio = 150,
+                            Preparacion = "Cortar ingredientes y mezclar en una fuente",
+                            TipoMercaderiaId = 7
+                        },
+                        new
+                        {
+                            MercaderiaId = 8,
+                            Imagen = "http://resizer.sevilla.abc.es/resizer/resizer.php?imagen=https://sevilla.abc.es/gurme//wp-content/uploads/sites/24/2012/06/postres-helados.jpg&nuevoancho=1920",
+                            Ingredientes = "Bochas de helado de chocolate, americana, crema y cereza",
+                            Nombre = "Postre helado",
+                            Precio = 280,
+                            Preparacion = "Colocar bochas de helado con crema y luego la cereza",
+                            TipoMercaderiaId = 10
+                        });
                 });
 
             modelBuilder.Entity("Domain.Models.TipoMercaderia", b =>

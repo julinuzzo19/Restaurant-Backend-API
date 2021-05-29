@@ -9,7 +9,7 @@ namespace Domain.Models
         [Required] public string Nombre { get; set; }
         [Required] public int Precio { get; set; }
         [Required] public string Ingredientes { get; set; }
-        [Required] public string Preparación { get; set; }
+        [Required] public string Preparacion { get; set; }
         [Required] public string Imagen { get; set; }
 
         //FK

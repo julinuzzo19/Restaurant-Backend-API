@@ -23,7 +23,9 @@ namespace AccessData.Queries
 
         public MercaderiaResponse GetMercaderiaById(int id)
         {
-            var query = database.Query("Mercaderia").Where("Mercaderia.MercaderiaId", "=", id).FirstOrDefault<MercaderiaResponse>();
+            var query = database.Query("Mercaderia").Select("*").Select("TipoMercaderia.Descripcion as TipoMercaderia")
+            .Join("TipoMercaderia", "Mercaderia.TipoMercaderiaId", "TipoMercaderia.TipoMercaderiaId").
+                Where("Mercaderia.MercaderiaId", "=", id).FirstOrDefault<MercaderiaResponse>();
 
             return query;
         }
@@ -32,7 +34,8 @@ namespace AccessData.Queries
         {
             if (string.IsNullOrWhiteSpace(tipoMercaderia) && TipoMercaderiaId == 0)
             {
-                var query = database.Query("Mercaderia");
+                var query = database.Query("Mercaderia").Select("*").Select("TipoMercaderia.Descripcion as TipoMercaderia")
+                .Join("TipoMercaderia", "Mercaderia.TipoMercaderiaId", "TipoMercaderia.TipoMercaderiaId");
 
                 var result = query.Get<MercaderiaResponse>().ToList();
 

@@ -54,9 +54,9 @@ namespace Restaurant_Digital_API.Controllers
                     return new NotFoundResult();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new NotFoundResult();
+                return new JsonResult(e.Message) { StatusCode = 404 };
             }
         }
 
@@ -67,9 +67,9 @@ namespace Restaurant_Digital_API.Controllers
             {
                 return new JsonResult(_service.GetAll(Fecha)) { StatusCode = 200 };
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new BadRequestResult();
+                return new JsonResult(e.Message) { StatusCode = 400 };
             }
         }
     }

@@ -40,7 +40,7 @@ namespace Application.Services
             List<string> ListaMercaderia = new List<string>();
 
             //Sumar precio de las mercaderias de la comanda
-            foreach (var item in comandaDTO.MercaderiasId)
+            foreach (var item in comandaDTO.Mercaderia)
             {
                 MercaderiaResponse mercaderia = _queriesMercaderia.GetMercaderiaById(item);
                 if (mercaderia != null)
@@ -50,13 +50,13 @@ namespace Application.Services
                     ComandaMercaderia relacion = new ComandaMercaderia { ComandaId = Comanda.ComandaId, MercaderiaId = mercaderia.MercaderiaId };
                     _repository.Add<ComandaMercaderia>(relacion);
                 }
-                else { throw new Exception(); }
+                else { throw new Exception("No existen mercaderias con esos Ids."); }
             }
             Comanda.PrecioTotal = PrecioTotal;
 
             if (ListaMercaderia.Count == 0)
             {
-                throw new Exception();
+                throw new Exception("No existen mercaderias con esos Ids. ");
             }
 
             _repository.Add<Comanda>(Comanda);
@@ -112,7 +112,7 @@ namespace Application.Services
             Comanda comanda = _queriesComanda.GetComandaById(Id);
             if (comanda == null)
             {
-                throw new Exception();
+                throw new Exception("No existe la comanda con ese Id.");
             }
             List<ComandaResponse> ListMercaderiaByComanda = _queriesComanda.GetMercaderiasByComandaId(comanda.ComandaId);
 

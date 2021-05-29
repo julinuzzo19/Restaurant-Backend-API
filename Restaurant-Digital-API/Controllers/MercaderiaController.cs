@@ -28,14 +28,14 @@ namespace Restaurant_Digital_API.Controllers
                     MercaderiaResponse mercaderiaResponse = _service.CreateMercaderia(mercaderia);
                     return new JsonResult(mercaderiaResponse) { StatusCode = 201 };
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    return new BadRequestResult();
+                    return new JsonResult(e.Message) { StatusCode = 400 };
                 }
             }
             else
             {
-                return new BadRequestResult();
+                return new JsonResult("No se ha podido crear la mercaderia.") { StatusCode = 400 };
             }
         }
 
@@ -54,9 +54,9 @@ namespace Restaurant_Digital_API.Controllers
                     return new NotFoundResult();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new NotFoundResult();
+                return new JsonResult(e.Message) { StatusCode = 404 };
             }
         }
 
@@ -75,9 +75,9 @@ namespace Restaurant_Digital_API.Controllers
                     return new NotFoundResult();
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new NotFoundResult();
+                return new JsonResult(e.Message) { StatusCode = 404 };
             }
         }
 
@@ -89,9 +89,9 @@ namespace Restaurant_Digital_API.Controllers
                 _service.DeleteMercaderiaById(Id);
                 return new OkResult();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new NotFoundResult();
+                return new JsonResult(e.Message) { StatusCode = 404 };
             }
         }
 
@@ -103,9 +103,9 @@ namespace Restaurant_Digital_API.Controllers
                 _service.UpdateMercaderia(Id, mercaderia);
                 return new OkResult();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return new NotFoundResult();
+                return new JsonResult(e.Message) { StatusCode = 404 };
             }
         }
     }

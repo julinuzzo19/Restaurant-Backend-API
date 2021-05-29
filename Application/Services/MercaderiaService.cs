@@ -32,10 +32,10 @@ namespace Application.Services
             Mercaderia Mercaderia = new Mercaderia
             {
                 Nombre = mercaderia.Nombre,
-                TipoMercaderiaId = mercaderia.TipoMercaderiaId,
+                TipoMercaderiaId = mercaderia.Tipo,
                 Precio = mercaderia.Precio,
                 Imagen = mercaderia.Imagen,
-                Preparación = mercaderia.Preparación,
+                Preparacion = mercaderia.Preparacion,
                 Ingredientes = mercaderia.Ingredientes
             };
 
@@ -49,7 +49,7 @@ namespace Application.Services
                 TipoMercaderiaId = Mercaderia.TipoMercaderiaId,
                 Precio = Mercaderia.Precio,
                 Imagen = Mercaderia.Imagen,
-                Preparación = Mercaderia.Preparación,
+                Preparacion = Mercaderia.Preparacion,
                 Ingredientes = Mercaderia.Ingredientes
             };
         }
@@ -60,7 +60,7 @@ namespace Application.Services
 
             if (mercaderiaReponse == null)
             {
-                throw new Exception();
+                throw new Exception("No existe la mercaderia con el Id seleccionado para eliminar.");
             }
 
             Mercaderia mercaderia = new Mercaderia
@@ -69,7 +69,7 @@ namespace Application.Services
                 Nombre = mercaderiaReponse.Nombre,
                 Precio = mercaderiaReponse.Precio,
                 Ingredientes = mercaderiaReponse.Ingredientes,
-                Preparación = mercaderiaReponse.Preparación,
+                Preparacion = mercaderiaReponse.Preparacion,
                 Imagen = mercaderiaReponse.Imagen,
                 TipoMercaderiaId = mercaderiaReponse.TipoMercaderiaId
             };
@@ -96,9 +96,9 @@ namespace Application.Services
                 Nombre = mercaderiaDTO.Nombre,
                 Precio = mercaderiaDTO.Precio,
                 Ingredientes = mercaderiaDTO.Ingredientes,
-                Preparación = mercaderiaDTO.Preparación,
+                Preparacion = mercaderiaDTO.Preparacion,
                 Imagen = mercaderiaDTO.Imagen,
-                TipoMercaderiaId = mercaderiaDTO.TipoMercaderiaId
+                TipoMercaderiaId = mercaderiaDTO.Tipo
             };
 
             _repository.Update<Mercaderia>(mercaderia);
