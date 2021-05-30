@@ -7,7 +7,7 @@ namespace Domain.Queries
 {
     public interface IComandaQueries
     {
-        Comanda GetComandaById(Guid id);
+        ComandaConMercaderiaList GetComandaById(Guid id);
         List<Comanda> GetAll(DateTime? Fecha);
         List<ComandaResponse> GetMercaderiasByComandaId(Guid id);
     }

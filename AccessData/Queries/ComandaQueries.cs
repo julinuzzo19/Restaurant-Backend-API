@@ -36,7 +36,7 @@ namespace AccessData.Queries
             else
             {
                 var query = database.Query("Comanda")
-                    .WhereDate("Comanda.Fecha", "=", Fecha);
+                .WhereDate("Comanda.Fecha", "=", Fecha);
 
                 var result = query.Get<Comanda>().ToList();
 
@@ -44,21 +44,23 @@ namespace AccessData.Queries
             }
         }
 
-        public Comanda GetComandaById(Guid id)
+        public ComandaConMercaderiaList GetComandaById(Guid id)
         {
-            var query = database.Query("Comanda")
+            var query = database.Query("Comanda").Select("*").Select("FormaEntrega.Descripcion as FormaEntrega").
+                Join("FormaEntrega", "FormaEntrega.FormaEntregaId", "Comanda.FormaEntregaId")
                 .Where("Comanda.ComandaId", "=", id)
-                .FirstOrDefault<Comanda>();
+                .FirstOrDefault<ComandaConMercaderiaList>();
 
             return query;
         }
 
         public List<ComandaResponse> GetMercaderiasByComandaId(Guid id)
         {
-            var query = database.Query("Comanda")
-                .Select("Comanda.ComandaId", "Comanda.Fecha", "Mercaderia.Nombre", "FormaEntregaId", "Mercaderia.MercaderiaId", "Mercaderia.Nombre as NombreMercaderia")
+            var query = database.Query("Comanda").Select("*")
+                .Select("FormaEntrega.Descripcion as FormaEntrega", "Mercaderia.Nombre as NombreMercaderia")
                 .Join("ComandaMercaderia", "ComandaMercaderia.ComandaId", "Comanda.ComandaId")
                 .Join("Mercaderia", "Mercaderia.MercaderiaId", "ComandaMercaderia.MercaderiaId")
+                .Join("FormaEntrega", "FormaEntrega.FormaEntregaId", "Comanda.FormaEntregaId")
                 .Where("Comanda.ComandaId", "=", id);
 
             var result = query.Get<ComandaResponse>().ToList();

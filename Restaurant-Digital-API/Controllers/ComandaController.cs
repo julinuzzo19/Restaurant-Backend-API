@@ -44,7 +44,7 @@ namespace Restaurant_Digital_API.Controllers
         {
             try
             {
-                ComandaResponseCreated comanda = _service.GetComandaById(Id);
+                ComandaConMercaderiaList comanda = _service.GetComandaById(Id);
                 if (comanda != null)
                 {
                     return new JsonResult(comanda) { StatusCode = 200 };

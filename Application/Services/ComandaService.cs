@@ -11,7 +11,7 @@ namespace Application.Services
     {
         ComandaResponseCreated CreateComanda(ComandaDTO comandaDTO);
         List<ComandaConMercaderiaList> GetAll(DateTime? Fecha);
-        ComandaResponseCreated GetComandaById(Guid Id);
+        ComandaConMercaderiaList GetComandaById(Guid Id);
     }
 
     public class ComandaService : IComandaService
@@ -85,9 +85,12 @@ namespace Application.Services
                 List<ComandaResponse> ListMercaderiaByComanda = _queriesComanda.GetMercaderiasByComandaId(comanda.ComandaId);
                 List<string> NombreMercaderiaList = new List<string>();
 
+                string FormaEntregaItem = "";
+
                 //Creo una lista con los nombres de todas las mercaderias de una comanda
                 foreach (var item in ListMercaderiaByComanda)
                 {
+                    FormaEntregaItem = item.FormaEntrega;
                     NombreMercaderiaList.Add(item.NombreMercaderia);
                 }
 
@@ -98,6 +101,7 @@ namespace Application.Services
                     Fecha = comanda.Fecha,
                     PrecioTotal = comanda.PrecioTotal,
                     FormaEntregaId = comanda.FormaEntregaId,
+                    FormaEntrega = FormaEntregaItem,
                     NombreMercaderia = NombreMercaderiaList
                 };
 
@@ -107,9 +111,9 @@ namespace Application.Services
             return comandasMercaderiaList;
         }
 
-        public ComandaResponseCreated GetComandaById(Guid Id)
+        public ComandaConMercaderiaList GetComandaById(Guid Id)
         {
-            Comanda comanda = _queriesComanda.GetComandaById(Id);
+            ComandaConMercaderiaList comanda = _queriesComanda.GetComandaById(Id);
             if (comanda == null)
             {
                 throw new Exception("No existe la comanda con ese Id.");
@@ -123,13 +127,14 @@ namespace Application.Services
                 ListaMercaderia.Add(item.NombreMercaderia);
             }
 
-            return new ComandaResponseCreated
+            return new ComandaConMercaderiaList
             {
                 ComandaId = comanda.ComandaId,
                 PrecioTotal = comanda.PrecioTotal,
                 Fecha = comanda.Fecha,
                 FormaEntregaId = comanda.FormaEntregaId,
-                Mercaderia = ListaMercaderia
+                FormaEntrega = comanda.FormaEntrega,
+                NombreMercaderia = ListaMercaderia
             };
         }
     }

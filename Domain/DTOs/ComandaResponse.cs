@@ -10,6 +10,7 @@ namespace Domain.DTOs
         public string NombreMercaderia { get; set; }
 
         public int FormaEntregaId { get; set; }
+        public string FormaEntrega { get; set; }
         public int MercaderiaId { get; set; }
     }
 }
