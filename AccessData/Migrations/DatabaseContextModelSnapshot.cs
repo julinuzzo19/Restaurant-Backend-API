@@ -157,7 +157,7 @@ namespace AccessData.Migrations
                             MercaderiaId = 3,
                             Imagen = "https://okdiario.com/img/2019/01/17/pizza-de-atun-con-aceitunas-negras-655x368.jpg",
                             Ingredientes = "Harina, queso, salsa y aceitunas negras",
-                            Nombre = "Pizza con aceitunas negras",
+                            Nombre = "Pizza con aceitunas",
                             Precio = 350,
                             Preparacion = "Hornear pizza y agregar aceitunas",
                             TipoMercaderiaId = 5

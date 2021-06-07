@@ -6,6 +6,6 @@ namespace Domain.Queries
     public interface IMercaderiaQueries
     {
         MercaderiaResponse GetMercaderiaById(int id);
-        List<MercaderiaResponse> GetAll(string tipoMercaderia, int TipoMercaderiaId);
+        List<MercaderiaResponse> GetAll(int TipoMercaderiaId);
     }
 }

@@ -30,9 +30,9 @@ namespace AccessData.Queries
             return query;
         }
 
-        public List<MercaderiaResponse> GetAll(string tipoMercaderia, int TipoMercaderiaId)
+        public List<MercaderiaResponse> GetAll(int TipoMercaderiaId)
         {
-            if (string.IsNullOrWhiteSpace(tipoMercaderia) && TipoMercaderiaId == 0)
+            if (TipoMercaderiaId == 0)
             {
                 var query = database.Query("Mercaderia").Select("*").Select("TipoMercaderia.Descripcion as TipoMercaderia")
                 .Join("TipoMercaderia", "Mercaderia.TipoMercaderiaId", "TipoMercaderia.TipoMercaderiaId");
@@ -41,20 +41,9 @@ namespace AccessData.Queries
 
                 return result;
             }
-
-            if (tipoMercaderia != null)
-            {
-                var query = database.Query("Mercaderia")
-                    .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
-                    .WhereRaw($"TipoMercaderia.Descripcion like '%{tipoMercaderia}%'", "sql");
-
-                var result = query.Get<MercaderiaResponse>().ToList();
-
-                return result;
-            }
             else
             {
-                var query = database.Query("Mercaderia")
+                var query = database.Query("Mercaderia").Select("*").Select("TipoMercaderia.Descripcion as TipoMercaderia")
                 .Join("TipoMercaderia", "TipoMercaderia.TipoMercaderiaId", "Mercaderia.TipoMercaderiaId")
                 .Where("Mercaderia.TipoMercaderiaId", "=", TipoMercaderiaId);
 

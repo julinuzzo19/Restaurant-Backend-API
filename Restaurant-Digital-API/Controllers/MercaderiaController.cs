@@ -61,11 +61,11 @@ namespace Restaurant_Digital_API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll(string TipoMercaderia, int TipoMercaderiaId)
+        public IActionResult GetAll(int Tipo)
         {
             try
             {
-                List<MercaderiaResponse> mercaderia = _service.GetAll(TipoMercaderia, TipoMercaderiaId);
+                List<MercaderiaResponse> mercaderia = _service.GetAll(Tipo);
                 if (mercaderia != null)
                 {
                     return new JsonResult(mercaderia) { StatusCode = 200 };

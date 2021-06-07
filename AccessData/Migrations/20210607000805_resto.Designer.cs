@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccessData.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20210528225348_restaurantDB")]
-    partial class restaurantDB
+    [Migration("20210607000805_resto")]
+    partial class resto
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -159,7 +159,7 @@ namespace AccessData.Migrations
                             MercaderiaId = 3,
                             Imagen = "https://okdiario.com/img/2019/01/17/pizza-de-atun-con-aceitunas-negras-655x368.jpg",
                             Ingredientes = "Harina, queso, salsa y aceitunas negras",
-                            Nombre = "Pizza con aceitunas negras",
+                            Nombre = "Pizza con aceitunas",
                             Precio = 350,
                             Preparacion = "Hornear pizza y agregar aceitunas",
                             TipoMercaderiaId = 5
