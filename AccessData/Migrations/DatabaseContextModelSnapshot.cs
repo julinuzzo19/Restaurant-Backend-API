@@ -156,8 +156,8 @@ namespace AccessData.Migrations
                         {
                             MercaderiaId = 3,
                             Imagen = "https://okdiario.com/img/2019/01/17/pizza-de-atun-con-aceitunas-negras-655x368.jpg",
-                            Ingredientes = "Harina, queso, salsa y aceitunas negras",
-                            Nombre = "Pizza con aceitunas",
+                            Ingredientes = "Harina, queso, atún y aceitunas negras",
+                            Nombre = "Pizza de atún",
                             Precio = 350,
                             Preparacion = "Hornear pizza y agregar aceitunas",
                             TipoMercaderiaId = 5
@@ -195,7 +195,7 @@ namespace AccessData.Migrations
                         new
                         {
                             MercaderiaId = 7,
-                            Imagen = "https://s1.eestatic.com/2021/01/22/ciencia/nutricion/553206479_171070440_1024x576.jpg",
+                            Imagen = "http://alicante.com.ar/uploads/recetas/94_receta.jpg",
                             Ingredientes = "Lechuga, nueces, hinojo y hongos",
                             Nombre = "Ensalada Waldorf",
                             Precio = 150,

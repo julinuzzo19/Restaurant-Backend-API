@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AccessData.Migrations
 {
@@ -139,8 +139,8 @@ namespace AccessData.Migrations
                     { 2, "https://lacteoselpuente.com.ar/assets/img/picadita/picada_queso_premium.png", "Queso comun, azul y roquefort", "Queso", 130, "Picada con los distintos tipos de queso", 1 },
                     { 4, "https://unaricareceta.com/wp-content/uploads/2020/01/Webp.net-resizeimage-95.jpg", "Ravioles de ricota, salsa fileto y albahaca", "Ravioles de ricota", 400, "Hervir ravioles y colocar salsa", 3 },
                     { 5, "https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2018/08/09173312/asado.jpg", "Carne y sal", "Asado a la parrilla", 480, "Asar la carne", 4 },
-                    { 3, "https://okdiario.com/img/2019/01/17/pizza-de-atun-con-aceitunas-negras-655x368.jpg", "Harina, queso, salsa y aceitunas negras", "Pizza con aceitunas", 350, "Hornear pizza y agregar aceitunas", 5 },
-                    { 7, "https://s1.eestatic.com/2021/01/22/ciencia/nutricion/553206479_171070440_1024x576.jpg", "Lechuga, nueces, hinojo y hongos", "Ensalada Waldorf", 150, "Cortar ingredientes y mezclar en una fuente", 7 },
+                    { 3, "https://okdiario.com/img/2019/01/17/pizza-de-atun-con-aceitunas-negras-655x368.jpg", "Harina, queso, atún y aceitunas negras", "Pizza de atún", 350, "Hornear pizza y agregar aceitunas", 5 },
+                    { 7, "http://alicante.com.ar/uploads/recetas/94_receta.jpg", "Lechuga, nueces, hinojo y hongos", "Ensalada Waldorf", 150, "Cortar ingredientes y mezclar en una fuente", 7 },
                     { 6, "https://infoagro.com.ar/wp-content/uploads/2020/04/cerveza-artesanal-en-crisis-3.jpg", "Cerveza artesanal", "Cerveza artesanal", 200, "Cerveza estacionada", 9 },
                     { 8, "http://resizer.sevilla.abc.es/resizer/resizer.php?imagen=https://sevilla.abc.es/gurme//wp-content/uploads/sites/24/2012/06/postres-helados.jpg&nuevoancho=1920", "Bochas de helado de chocolate, americana, crema y cereza", "Postre helado", 280, "Colocar bochas de helado con crema y luego la cereza", 10 }
                 });
